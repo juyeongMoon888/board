@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .field-error {
+        border-color: #dc3545;
+        color: #dc3545
+        }
+    </style>
+</head>
+<body>
+<div>
+    <form action="/members/new" th:object="${form}" method="post">
+        <div>
+            <label th:for="name">로그인ID</label>
+            <input type="text" th:field="*{name}"
+                   th:errorclass="field-error" placeholder="이름을 입력하세요">
+            <div class = "field-error" th:errors="*{name}">아이디 오류</div>
+        </div>
+
+        <div>
+            <label th:for="password">비밀번호</label>
+            <input type="password" th:field="*{password}" placeholder="비밀번호를 입력하세요">
+        </div>
+
+        <button type="submit">가입하기</button>
+    </form>
+
+</div>
+</body>
+</html>
