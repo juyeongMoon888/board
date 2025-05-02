@@ -2,6 +2,8 @@ package com.juyeong.board.controller;
 
 import com.juyeong.board.domain.Member;
 import com.juyeong.board.service.LoginService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -23,7 +25,7 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute LoginForm form, BindingResult bindingResult) {
+    public String login(@ModelAttribute LoginForm form, BindingResult bindingResult, HttpServletResponse response) {
         if (bindingResult.hasErrors()) {
             return "loginForm";
         }
@@ -34,9 +36,9 @@ public class LoginController {
             return "loginForm";
         }
 
-
-
         //로그인 성공 처리
+        Cookie idCookie = new Cookie("memberId", String.valueOf(loginMember.getLoginId()));
+        response.addCookie(idCookie);
         return "redirect:/";
     }
 }
