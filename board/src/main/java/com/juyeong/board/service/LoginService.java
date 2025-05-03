@@ -23,7 +23,6 @@ public class LoginService {
     @Transactional
     public Member login(String loginId, String password) {
         List<Member> findMember = memberRepository.findByLoginId(loginId);
-        log.info("findMember={}", findMember);
         return findMember.stream()
                 .filter(m -> m.getPassword().equals(password))
                 .findAny()

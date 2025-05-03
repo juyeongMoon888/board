@@ -18,21 +18,23 @@ public class BoardController {
 
     private final ArticleRepository articleRepository;
     private final BoardService boardService;
-
-    @RequestMapping("/")
+    //게시판 그자체
+    @RequestMapping("/board")
     public String article(Model model) {
         List<Article> articles = articleRepository.findAll();
         model.addAttribute("articles", articles);
         return "board";
     }
 
+    //게시글 등록
     @GetMapping("/board/add")
     public String create(Model model) {
         model.addAttribute("articles", new Article());
-        return "/addForm";
+        return "addForm";
     }
 
-    @PostMapping("/add")
+    //게시글 등록
+    @PostMapping("/board/add")
     public String createForm(@RequestParam("title") String title,
                              @RequestParam("userName") String userName,
                              @RequestParam("body") String body) {
@@ -46,7 +48,7 @@ public class BoardController {
     public String article(@PathVariable long articlesId, Model model) {
         Article articles = articleRepository.findOne(articlesId);
         model.addAttribute("articles", articles);
-        return "/articles";
+        return "articles";
     }
 
     //게시글 수정
@@ -54,7 +56,7 @@ public class BoardController {
     public String edit(@PathVariable long articlesId, Model model) {
         Article articles = articleRepository.findOne(articlesId);
         model.addAttribute("articles", articles);
-        return "/editForm";
+        return "editForm";
     }
 
     @PostMapping("/{articlesId}/edit")
