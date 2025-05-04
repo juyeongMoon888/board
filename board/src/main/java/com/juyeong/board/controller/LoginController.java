@@ -1,14 +1,10 @@
 package com.juyeong.board.controller;
 
 import com.juyeong.board.SessionConst;
-import com.juyeong.board.SessionManager;
 import com.juyeong.board.domain.Member;
 import com.juyeong.board.service.LoginService;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
